@@ -6,9 +6,11 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:37:11 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/09 14:42:36 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/09 15:06:07 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_strlen(const char *str)
 {

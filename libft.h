@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 16:38:06 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/09 14:44:33 by thessena         ###   ########.fr       */
+/*   Created: 2024/10/09 14:59:25 by thessena          #+#    #+#             */
+/*   Updated: 2024/10/09 15:23:52 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
-#include "ft_strlen.c"
-#include "ft_isaplha.c"
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int	main(void)
-{
-	int		len;
-	char	c1;
-	char	c2;
-	char	c3;
+# include <stddef.h>
 
-	len = ft_strlen("asdf");
-	c1 = 'A';
-	c2 = 'g';
-	c3 = '5';
-	printf("%i\n", len);
-	printf("%c %d\n", c1, ft_isalpha(c1));
-	printf("%c %d\n", c2, ft_isalpha(c2));
-	printf("%c %d\n", c3, ft_isalpha(c3));
-	return (0);
-}
+int	ft_strlen(const char *s);
+int	ft_isalpha(int c);
+
+#endif

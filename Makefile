@@ -1,4 +1,16 @@
-CC = gcc
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
+#    Updated: 2024/10/10 13:47:24 by thessena         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = .
 OBJ_DIR = obj
@@ -24,6 +36,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-$(info SRC: $(SRC))
-$(info OBJ: $(OBJ))

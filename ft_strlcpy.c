@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:39:36 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/10 17:13:25 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:57:28 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	int	len;
 
-	src = (char *)src;
 	len = ft_strlen(src);
 	if (dstsize == 0)
 		return (len);

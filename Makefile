@@ -6,7 +6,7 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/11 14:24:38 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/11 15:22:01 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-TEST = test_strchr
+TEST = test_strrchr
 
 test: $(NAME)
 	$(CC) $(CFLAGS) -o $(TEST) $(SRC_DIR)/$(TEST).c -L. -lft

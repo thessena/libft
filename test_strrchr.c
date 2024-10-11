@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   test_strrchr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/11 14:14:13 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/11 15:25:10 by thessena         ###   ########.fr       */
+/*   Created: 2024/10/11 14:19:01 by thessena          #+#    #+#             */
+/*   Updated: 2024/10/11 15:17:11 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	main(void)
 {
-	char	ch;
+	char		*str;
+	char		ch;
+	char		*result;
 
-	ch = (char)c;
-	while (*s)
+	str = "Hello, world!";
+	ch = 'o';
+	result = ft_strrchr(str, ch);
+	if (result != NULL)
 	{
-		if (ch == *s)
-			return ((char *)s);
-		s++;
+		printf("Das Zeichen '%c' gefunden: %ld\n", ch, result - str);
 	}
-	if (ch == '\0')
-		return ((char *)s);
-	return (NULL);
+	else
+	{
+		printf("Das Zeichen '%c' wurde nicht gefunden.\n", ch);
+	}
+	return (0);
 }

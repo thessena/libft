@@ -6,13 +6,13 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:29:53 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/17 15:21:26 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:28:06 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_in_set(char c, const char *set)
+int	is_in_set(char c, const char *set)
 {
 	while (*set)
 	{

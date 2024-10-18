@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:27:24 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/17 16:23:04 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:28:22 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_count_words(char *s, char c)
 
 	count = 0;
 	flag = 0;
-	while (*s++)
+	while (*s)
 	{
 		if (*s != c && flag == 0)
 		{
@@ -28,6 +28,7 @@ int	ft_count_words(char *s, char c)
 		}
 		if (*s == c)
 			flag = 0;
+		s++;
 	}
 	return (count);
 }
@@ -35,16 +36,41 @@ int	ft_count_words(char *s, char c)
 char	*ft_allocate_word(const char *s, char c)
 {
 	int			len;
-	const char	*start;
+	char		*word;
+	int			i;
 
 	len = 0;
-	start = s;
-	while (*s && *s != c)
-	{
+	while (s[len] && s[len] != c)
 		len++;
-		s++;
+	word = (char *)malloc(len + 1);
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		word[i] = s[i];
+		i++;
 	}
-	return (ft_substr(start, 0, len));
+	word[len] = '\0';
+	return (word);
+}
+
+void	ft_free_all(char **result, int i)
+{
+	while (i > 0)
+		free(result[--i]);
+	free(result);
+}
+
+int	ft_assign_word(char **result, char const *s, char c, int i)
+{
+	result[i] = ft_allocate_word(s, c);
+	if (!result[i])
+	{
+		ft_free_all(result, i);
+		return (0);
+	}
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -64,7 +90,8 @@ char	**ft_split(char const *s, char c)
 	{
 		if (*s != c)
 		{
-			result[i++] = ft_allocate_word(s, c);
+			if (!ft_assign_word(result, s, c, i++))
+				return (NULL);
 			while (*s && *s != c)
 				s++;
 		}

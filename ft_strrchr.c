@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:57:48 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/11 15:25:56 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:48:30 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		end++;
 	}
-	while (end >= s)
+	while (s <= end)
 	{
 		if (*end == ch)
 		{

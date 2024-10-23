@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:49:25 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/23 10:26:54 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:53:34 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
-	size_t	str_len;
+	size_t	length;
 
 	if (!s)
 		return (NULL);
-	str_len = ft_strlen(s);
-	if (start >= str_len)
+	length = ft_strlen(s);
+	if (start >= length)
 		return (ft_strdup(""));
-	if (len > str_len - start)
-		len = str_len - start;
+	if (len > length - start)
+		len = length - start;
 	sub = (char *)malloc((len + 1));
 	if (!sub)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:27:24 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/23 10:05:56 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:31:29 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,43 +19,65 @@ int	ft_count_words(const char *s, char c)
 	count = 0;
 	while (*s)
 	{
-		while (*s == c)
+		if (*s == c)
 			s++;
 		if (*s)
-		{
 			count++;
-			while (*s && *s != c)
-				s++;
-		}
+		while (*s != c && *s)
+			s++;
 	}
 	return (count);
 }
 
-char	*ft_copy_word(const char *start, const char *end)
+/* char	*ft_copy_word(const char *start, const char *end)
 {
 	char	*word;
-	char	*ptr;
+	int		i;
+	int		len;
 
-	word = (char *)malloc((end - start + 1) * sizeof(char));
+	if (start >= end)
+		return (NULL);
+	len = end - start;
+	word = (char *)malloc((len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	ptr = word;
+	i = 0;
 	while (start < end)
-		*ptr++ = *start++;
-	*ptr = '\0';
+		word[i++] = *start++;
+	word[i] = '\0';
 	return (word);
-}
+} */
 
 char	**ft_split(char const *s, char c)
 {
-	char		**result;
-	int			i;
-	const char	*start;
+	char	**result;
+	int		i;
+	size_t	length;
 
-	if (!s)
-		return (NULL);
 	result = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (!result)
+	if (!s || !result)
+		return (0);
+	i = 0;
+	while (*s)
+	{
+		if (*s == c && *s)
+			s++;
+		if (*s)
+		{
+			if (!ft_strchr(s, c))
+				length = ft_strlen(s);
+			else
+				length = ft_strchr(s, c) - s;
+			result[i++] = ft_substr(s, 0, length);
+			s += length;
+		}
+	}
+	result[i] = NULL;
+	return (result);
+}
+
+/* 	result = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
+	if (!s || !result)
 		return (NULL);
 	i = 0;
 	while (*s)
@@ -65,11 +87,21 @@ char	**ft_split(char const *s, char c)
 			start = s;
 			while (*s && *s != c)
 				s++;
-			result[i++] = ft_copy_word(start, s);
+			result[i] = ft_copy_word(start, s);
+			if (!result[i])
+			{
+				while (i >= 0)
+				{
+					free(result[i]);
+					i--;
+				}
+				free(result);
+				return (NULL);
+			}
+			i++;
 		}
 		else
 			s++;
 	}
 	result[i] = NULL;
-	return (result);
-}
+	return (result); */

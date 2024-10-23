@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:27:24 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/23 12:48:25 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:30:43 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,31 @@ int	ft_count_words(char *s, char c)
 	return (count);
 }
 
-char	*ft_allocate_word(const char *s, char c)
+int	ft_assign_word(char **result, char const *s, char c, int i)
 {
-	int			len;
-	char		*word;
-	int			i;
+	int		len;
+	char	*word;
+	int		j;
 
 	len = 0;
 	while (s[len] && s[len] != c)
 		len++;
 	word = (char *)malloc(len + 1);
 	if (!word)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[len] = '\0';
-	return (word);
-}
-
-int	ft_assign_word(char **result, char const *s, char c, int i)
-{
-	result[i] = ft_allocate_word(s, c);
-	if (!result[i])
 	{
 		while (i > 0)
 			free(result[--i]);
 		free(result);
 		return (0);
 	}
+	j = 0;
+	while (j < len)
+	{
+		word[j] = s[j];
+		j++;
+	}
+	word[len] = '\0';
+	result[i] = word;
 	return (1);
 }
 

@@ -6,39 +6,88 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/11 15:37:22 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/23 14:56:54 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
+NAME = libft.a
+
 SRC_DIR = .
 OBJ_DIR = obj
-NAME = libft.a
-SRC = $(wildcard $(SRC_DIR)/*.c)
-OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+SOURCES = \
+	ft_isalpha.c\
+	ft_isdigit.c \
+	ft_isalnum.c \
+	ft_isascii.c \
+	ft_isprint.c \
+	ft_strlen.c \
+	ft_memset.c \
+	ft_bzero.c \
+	ft_memcpy.c \
+	ft_memmove.c \
+	ft_strlcpy.c \
+	ft_strlcat.c \
+	ft_toupper.c \
+	ft_tolower.c \
+	ft_strchr.c \
+	ft_strrchr.c \
+	ft_strncmp.c \
+	ft_memchr.c \
+	ft_memcmp.c \
+	ft_strnstr.c \
+	ft_atoi.c \
+	ft_calloc.c \
+	ft_strdup.c \
+	ft_substr.c \
+	ft_strjoin.c \
+	ft_strtrim.c \
+	ft_split.c \
+	ft_itoa.c \
+	ft_strmapi.c \
+	ft_striteri.c \
+	ft_putchar_fd.c \
+	ft_putstr_fd.c \
+	ft_putendl_fd.c \
+	ft_putnbr_fd.c
+
+BONUS_SOURCES = \
+	# ft_lstnew_bonus.c \
+	# ft_lstadd_front_bonus.c \
+	# ft_lstsize_bonus.c \
+	# ft_lstlast_bonus.c \
+	# ft_lstadd_back_bonus.c \
+	# ft_lstdelone_bonus.c \
+	# ft_lstclear_bonus.c \
+	# ft_lstiter_bonus.c \
+	# ft_lstmap_bonus.c
+
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
+BONUS_OBJECTS = $(addprefix $(OBJ_DIR)/, $(BONUS_SOURCES:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJECTS)
+	$(AR) $(NAME) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+bonus: $(BONUS_OBJECTS) $(OBJECTS)
+	$(AR) $(NAME) $(BONUS_OBJECTS)
+
 clean:
-	rm -rf $(OBJ_DIR)
+	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
-
-TEST = test_strncmp
-
-test: $(NAME)
-	$(CC) $(CFLAGS) -o $(TEST) $(SRC_DIR)/$(TEST).c -L. -lft
-	./$(TEST)
+.PHONY: all clean fclean re bonus

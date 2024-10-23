@@ -6,7 +6,7 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/23 15:51:26 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/23 15:53:53 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ BONUS_SOURCES = \
 	ft_lstdelone.c \
 	ft_lstclear.c \
 	ft_lstiter.c \
-	# ft_lstmap.c
+	ft_lstmap.c
 
 OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
 BONUS_OBJECTS = $(addprefix $(OBJ_DIR)/, $(BONUS_SOURCES:.c=.o))

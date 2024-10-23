@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:29:53 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/17 15:28:06 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:41:32 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*new;
 	int		start;
 	int		end;
+	int		i;
 
 	if (!s1 || !set)
 		return (NULL);
@@ -40,6 +41,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	new = (char *)malloc((end - start) + 2);
 	if (!new)
 		return (NULL);
-	ft_strlcpy(new, &s1[start], end - start + 2);
+	i = 0;
+	while (start <= end)
+		new[i++] = s1 [start++];
+	new[i] = '\0';
 	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:27:24 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/23 12:35:34 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:48:25 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,14 @@ char	*ft_allocate_word(const char *s, char c)
 	return (word);
 }
 
-void	ft_free_all(char **result, int i)
-{
-	while (i > 0)
-		free(result[--i]);
-	free(result);
-}
-
 int	ft_assign_word(char **result, char const *s, char c, int i)
 {
 	result[i] = ft_allocate_word(s, c);
 	if (!result[i])
 	{
-		ft_free_all(result, i);
+		while (i > 0)
+			free(result[--i]);
+		free(result);
 		return (0);
 	}
 	return (1);

@@ -6,16 +6,18 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/23 14:56:54 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/23 15:20:05 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
-NAME = libft.a
 
+AR = ar rcs
+RM = rm -rf
+MKDIR = mkdir -p
+
+NAME = libft.a
 SRC_DIR = .
 OBJ_DIR = obj
 
@@ -56,7 +58,7 @@ SOURCES = \
 	ft_putnbr_fd.c
 
 BONUS_SOURCES = \
-	# ft_lstnew_bonus.c \
+	ft_lstnew_bonus.c \
 	# ft_lstadd_front_bonus.c \
 	# ft_lstsize_bonus.c \
 	# ft_lstlast_bonus.c \
@@ -71,15 +73,15 @@ BONUS_OBJECTS = $(addprefix $(OBJ_DIR)/, $(BONUS_SOURCES:.c=.o))
 
 all: $(NAME)
 
+bonus: $(BONUS_OBJECTS) $(OBJECTS)
+	$(AR) $(NAME) $(BONUS_OBJECTS)
+
 $(NAME): $(OBJECTS)
 	$(AR) $(NAME) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	$(MKDIR) -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-bonus: $(BONUS_OBJECTS) $(OBJECTS)
-	$(AR) $(NAME) $(BONUS_OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(BONUS_OBJECTS)

@@ -6,7 +6,7 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/23 15:20:05 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/23 15:24:29 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ SOURCES = \
 
 BONUS_SOURCES = \
 	ft_lstnew_bonus.c \
-	# ft_lstadd_front_bonus.c \
+	ft_lstadd_front_bonus.c \
 	# ft_lstsize_bonus.c \
 	# ft_lstlast_bonus.c \
 	# ft_lstadd_back_bonus.c \

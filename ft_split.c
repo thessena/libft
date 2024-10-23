@@ -6,7 +6,7 @@
 /*   By: thessena <thessena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:27:24 by thessena          #+#    #+#             */
-/*   Updated: 2024/10/23 09:56:04 by thessena         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:05:56 by thessena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,18 @@
 int	ft_count_words(const char *s, char c)
 {
 	int	count;
-	int	flag;
 
 	count = 0;
-	flag = 0;
 	while (*s)
 	{
-		if (*s != c && flag == 0)
+		while (*s == c)
+			s++;
+		if (*s)
 		{
-			flag = 1;
 			count++;
+			while (*s && *s != c)
+				s++;
 		}
-		if (*s == c)
-			flag = 0;
-		s++;
 	}
 	return (count);
 }
@@ -36,15 +34,15 @@ int	ft_count_words(const char *s, char c)
 char	*ft_copy_word(const char *start, const char *end)
 {
 	char	*word;
-	int		i;
+	char	*ptr;
 
 	word = (char *)malloc((end - start + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	i = 0;
+	ptr = word;
 	while (start < end)
-		word[i++] = *start++;
-	word[i] = '\0';
+		*ptr++ = *start++;
+	*ptr = '\0';
 	return (word);
 }
 
@@ -54,8 +52,10 @@ char	**ft_split(char const *s, char c)
 	int			i;
 	const char	*start;
 
+	if (!s)
+		return (NULL);
 	result = (char **)malloc((ft_count_words(s, c) + 1) * sizeof(char *));
-	if (!s || !(result))
+	if (!result)
 		return (NULL);
 	i = 0;
 	while (*s)

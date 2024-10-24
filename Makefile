@@ -6,7 +6,7 @@
 #    By: thessena <thessena@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 16:31:53 by thessena          #+#    #+#              #
-#    Updated: 2024/10/23 15:53:53 by thessena         ###   ########.fr        #
+#    Updated: 2024/10/24 13:03:37 by thessena         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,6 @@ RM = rm -rf
 MKDIR = mkdir -p
 
 NAME = libft.a
-SRC_DIR = .
-OBJ_DIR = obj
 
 SOURCES = \
 	ft_isalpha.c\
@@ -68,24 +66,22 @@ BONUS_SOURCES = \
 	ft_lstiter.c \
 	ft_lstmap.c
 
-OBJECTS = $(addprefix $(OBJ_DIR)/, $(SOURCES:.c=.o))
-BONUS_OBJECTS = $(addprefix $(OBJ_DIR)/, $(BONUS_SOURCES:.c=.o))
+OBJECTS = $(SOURCES:.c=.o)
+BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
 all: $(NAME)
-
-bonus: $(BONUS_OBJECTS) $(OBJECTS)
-	$(AR) $(NAME) $(BONUS_OBJECTS)
 
 $(NAME): $(OBJECTS)
 	$(AR) $(NAME) $(OBJECTS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(MKDIR) -p $(OBJ_DIR)
+%.o:%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: $(BONUS_OBJECTS)
+	$(AR) $(NAME) $(BONUS_OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
-	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
